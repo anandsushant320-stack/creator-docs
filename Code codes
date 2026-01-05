@@ -1,0 +1,16 @@
+-- Place this in a Script inside ServerScriptService
+local prefix = ":"
+
+game.Players.PlayerAdded:Connect(function(player)
+    player.Chatted:Connect(function(message)
+        local args = string.split(message, " ")
+        local command = string.lower(args[1])
+
+        if command == prefix .. "speed" then
+            local speedValue = tonumber(args[2])
+            if speedValue and player.Character then
+                player.Character.Humanoid.WalkSpeed = speedValue
+            end
+        end
+    end)
+end)
